@@ -1,13 +1,16 @@
 {
   "name": "ollama-visual-manager",
-  "version": "1.0.0",
-  "description": "跨平台Ollama可视化管理工具",
+  "version": "1.1.0",
+  "description": "Cross-platform Ollama Visual Management Tool",
   "main": "main.js",
+  "author": "chatsyx",
+  "license": "MIT",
   "scripts": {
     "start": "electron .",
     "dev": "vite",
     "build": "vite build",
-    "electron-build": "electron-builder",
+    "electron-build": "electron-builder --win",
+    "electron-build-dir": "electron-builder --dir",
     "test": "jest",
     "dev:electron": "concurrently \"npm run dev\" \"npm start\""
   },
@@ -33,10 +36,10 @@
     "productName": "Ollama Visual Manager",
     "copyright": "Copyright © 2026 Ollama Visual Manager",
     "directories": {
-      "output": "release"
+      "output": "build-release-new"
     },
     "files": [
-      "dist/**/*",
+      "build/**/*",
       "main.js",
       "preload.js",
       "package.json"
@@ -49,22 +52,6 @@
         }
       ],
       "asar": true
-    },
-    "mac": {
-      "target": [
-        {
-          "target": "dmg",
-          "arch": ["x64"]
-        }
-      ],
-      "asar": true
-    },
-    "linux": {
-      "target": ["AppImage"],
-      "asar": true
-    },
-    "asarUnpack": [],
-    "compression": "maximum",
-    "afterPack": "scripts/afterPack.js"
+    }
   }
 }

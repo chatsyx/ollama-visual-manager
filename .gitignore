@@ -64,3 +64,5 @@ env/
 # Electron build outputs
 electron-builder.yml
 release/
+build-release/
+build-release-new/

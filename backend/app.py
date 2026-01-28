@@ -1,7 +1,8 @@
 """
 Ollama Visual Manager 后端服务
-V1.00版本
+V1.1版本
 提供与Ollama模型的交互接口
+作者：chatsyx
 """
 
 from fastapi import FastAPI, HTTPException
@@ -16,7 +17,11 @@ import os
 app = FastAPI(
     title="Ollama Visual Manager API",
     description="提供与Ollama模型的交互接口",
-    version="1.00"
+    version="1.1",
+    contact={
+        "name": "chatsyx",
+        "url": "https://github.com/chatsyx",
+    },
 )
 
 # 配置CORS

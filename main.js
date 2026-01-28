@@ -16,7 +16,43 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:3000');
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
+    // 尝试不同的路径来找到index.html
+    const paths = [
+      path.join(__dirname, 'build', 'index.html'),
+      path.join(__dirname, 'dist', 'index.html'),
+      path.join(__dirname, 'index.html')
+    ];
+    
+    // 找到第一个存在的路径
+    let foundPath = null;
+    for (const p of paths) {
+      try {
+        if (require('fs').existsSync(p)) {
+          foundPath = p;
+          break;
+        }
+      } catch (e) {
+        console.error('Error checking path:', e);
+      }
+    }
+    
+    if (foundPath) {
+      mainWindow.loadFile(foundPath);
+    } else {
+      // 如果找不到index.html，显示错误信息
+      mainWindow.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(`
+        <html>
+          <head>
+            <title>Error</title>
+          </head>
+          <body>
+            <h1>Error: Could not find index.html</h1>
+            <p>Current directory: ${__dirname}</p>
+            <p>Please check if the application is properly packaged.</p>
+          </body>
+        </html>
+      `));
+    }
   }
 }
 
