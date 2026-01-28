@@ -36,7 +36,7 @@
     "productName": "Ollama Visual Manager",
     "copyright": "Copyright © 2026 Ollama Visual Manager",
     "directories": {
-      "output": "build-release-new"
+      "output": "build-v1.1"
     },
     "files": [
       "build/**/*",
